@@ -25,17 +25,17 @@ class Form {
       this.button.mousePressed(()=>{
         this.input.hide();
         this.button.hide();
-        player.name = this.input.value();
+        enemy.name = this.input.value();
         playerCount+=1;
-        player.index = playerCount;
-        player.update();
-        player.updateCount(playerCount);
-        this.greeting.html("Hello " + player.name)
+        enemy.index = playerCount;
+        enemy.update();
+    enemy.updateCount(playerCount);
+        this.greeting.html("Hello " + enemy.name)
         this.greeting.position(displayWidth/2 - 70, displayHeight/4);
       });
   
       this.reset.mousePressed(()=>{
-        player.updateCount(0);
+        enemy.updateCount(0);
         game.update(0);
       });
   

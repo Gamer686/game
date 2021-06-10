@@ -9,7 +9,7 @@ var playerCount;
 var allPlayers;
 var distance = 0;
 var database;
-
+var enemy;
 var form, player, game;
 
 function preload(){
@@ -18,12 +18,13 @@ function preload(){
     enemy3Img = loadImage("enemyGREEN2_1.png")
     enemy4Img = loadImage("enemyRED5_1.png")
     bgImg = loadImage("back.png")
-    saverImg = loadImage("ship.png")
+    saverImg = loadImage("Ship.jpg")
 }
 
 function setup(){
-    createCanvas(400,400)
+    
     saver = createSprite(208,288);
+    saver.addImage(saverImg)
     saver.scale = 0.2;
         enemy1 = createSprite(365,147,10,10);
         enemy1.addImage(enemy1Img)
@@ -41,7 +42,7 @@ enemy1.debug = true;
 wall1 = createSprite(200,396,400,10);
 wall1.visible = false;
 
-    canvas = createCanvas(displayWidth - 20, displayHeight-30);
+    canvas = createCanvas(displayWidth - 30, displayHeight-40);
     database = firebase.database();
     game = new Game();
     game.getState();
@@ -64,7 +65,6 @@ function draw() {
 }
 
    
-
 
 
 

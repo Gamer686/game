@@ -19,7 +19,7 @@ class Game {
   
     async start(){
       if(gameState === 0){
-        player = new Player();
+        enemy = new Player();
         var playerCountRef = await database.ref('playerCount').once("value");
         if(playerCountRef.exists()){
           playerCount = playerCountRef.val();
@@ -29,22 +29,14 @@ class Game {
         form.display();
       }
   
-      car1 = createSprite(100,200);
-      car1.addImage("car1",car1_img);
-      car2 = createSprite(300,200);
-      car2.addImage("car2",car2_img);
-      car3 = createSprite(500,200);
-      car3.addImage("car3",car3_img);
-      car4 = createSprite(700,200);
-      car4.addImage("car4",car4_img);
-      cars = [car1, car2, car3, car4];
+      
     }
   
     play(){
       form.hide();
       
-      Player.getPlayerInfo();
-      player.getCarsAtEnd();
+      enemy.getPlayerInfo();
+      enemy.getCarsAtEnd();
       
       if(allPlayers !== undefined){
         background(rgb(198,135,103));
@@ -72,7 +64,7 @@ class Game {
          // console.log(index, player.index)
   
          
-          if (index === player.index){
+          if (index === enemy.index){
             stroke(10);
             fill("red");
             ellipse(x,y,60,60);
@@ -87,15 +79,15 @@ class Game {
   
       }
   
-      if(keyIsDown(UP_ARROW) && player.index !== null){
-        player.distance +=10
-        player.update();
+      if(keyIsDown(DOWN_ARROW) && enemy1.index !== null){
+        enemy1.distance +=10
+        enemy1.update();
       }
   
-      if(player.distance > 5000){
+      if(enemy.distance > 5000){
         gameState = 2;
-        player.rank +=1
-        Player.updateSpaceshipAtEnd(player.rank)
+        enemy1.rank +=1
+        enemy1.updateSpaceshipAtEnd(enemy1.rank)
       }
     }
 }

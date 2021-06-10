@@ -7,8 +7,8 @@ class Player {
     }
   
     getCount(){
-      var playerCountRef = database.ref('playerCount');
-      playerCountRef.on("value",(data)=>{
+      var enemyCountRef = database.ref('playerCount');
+      enemyCountRef.on("value",(data)=>{
         playerCount = data.val();
       })
     }
@@ -20,29 +20,29 @@ class Player {
     }
   
     update(){
-      var playerIndex = "players/player" + this.index;
-      database.ref(playerIndex).set({
+      var enemyIndex = "enemies/enemy" + this.index;
+      database.ref(enemyIndex).set({
         name:this.name,
         distance:this.distance
       });
     }
   
-    static getPlayerInfo(){
-      var playerInfoRef = database.ref('players');
-      playerInfoRef.on("value",(data)=>{
+    static getEnemyInfo(){
+      var enemyInfoRef = database.ref('players');
+      enemyInfoRef.on("value",(data)=>{
         allPlayers = data.val();
       })
     }
   
     getCarsAtEnd() {
-      database.ref('CarsAtEnd').on("value",(data)=>{
+      database.ref('astralEnd').on("value",(data)=>{
         this.rank = data.val();
       })
     }
   
-    static updateCarsAtEnd(rank) {
+    static updateenemyAtEnd(rank) {
       database.ref('/').update({
-        CarsAtEnd:rank
+       enemyAtEnd:rank
       })
     }
   }
